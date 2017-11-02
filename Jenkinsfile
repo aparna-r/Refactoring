@@ -1,0 +1,2 @@
+library 'jenkins-template'
+servicePipeline{}
