@@ -35,6 +35,11 @@ pipeline {
         echo 'publishing to artifactory...'
       }
     }
+    stage('deploy') {
+      steps {
+        echo 'deploy to test env...'
+      }
+    }
     stage('functional tests') {
       steps {
         echo 'running cucumber tests for UAT...'
@@ -43,11 +48,6 @@ pipeline {
     stage('release') {
       steps {
         echo 'release artifact and publish to artifactory...'
-      }
-    }
-    stage('deploy') {
-      steps {
-        echo 'deploying to test...'
       }
     }
   }
