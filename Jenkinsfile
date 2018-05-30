@@ -3,14 +3,14 @@ pipeline {
   stages {
     stage('build') {
       steps {
-        echo 'building....'
+        echo 'compiling, unit tests, pmd, findbugs, checkstyle'
       }
     }
     stage('sanity') {
       parallel {
         stage('pact tests') {
           steps {
-            echo 'running pact tests...'
+            echo 'running pact tests provided by tenants(quby)'
           }
         }
         stage('integration tests') {
@@ -20,7 +20,7 @@ pipeline {
         }
         stage('quality') {
           steps {
-            echo 'running sonar qube scanning...'
+            echo 'running sonar qube scanning and check qaulity on sonarqube quality gate'
           }
         }
         stage('security') {
@@ -37,12 +37,12 @@ pipeline {
     }
     stage('deploy') {
       steps {
-        echo 'deploy to test env...'
+        echo 'deploy to test/dev env...'
       }
     }
     stage('functional tests') {
       steps {
-        echo 'running cucumber tests for UAT...'
+        echo 'running cucumber tests for UAT against dev/test env...'
       }
     }
     stage('release') {
